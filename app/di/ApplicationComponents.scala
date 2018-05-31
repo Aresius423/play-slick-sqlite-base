@@ -15,25 +15,12 @@ class ApplicationComponents(context: Context)
   extends BuiltInComponentsFromContext(context)
     with controllers.AssetsComponents
     with EvolutionsComponents
-    with SlickComponents
-    with ControllerComponents
-    with RulesComponents {
+    with SlickComponents{
 
+  lazy val homeController = new HomeController(controllerComponents)
   override def router: Router = new _root_.router.Routes(httpErrorHandler, homeController, assets)
   override lazy val dbApi: DBApi = SlickDBApi(slickApi)
   override lazy val httpFilters: Seq[EssentialFilter] = Seq.empty
 
   applicationEvolutions // force evolutions
-}
-
-
-trait ControllerComponents {
-  self: RulesComponents =>
-
-  lazy val homeController = new HomeController()
-}
-
-trait RulesComponents {
-  def configuration: Configuration
-
 }
