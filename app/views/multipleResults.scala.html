@@ -1,0 +1,16 @@
+@import services.DataStructures._
+@(data:Seq[ExampleData])
+
+@main("Welcome to Play") {
+  <h1>Welcome to Play!</h1>
+  <br>
+  <br>
+    <form action="/" method="post">
+        <input type="submit"  value="Insert value" />
+    </form>
+  <ul>
+	@for(el <- data){
+		<li>@{el.prop1}, @{el.prop2}, @{el.prop3}</li>
+	}
+  </ul>
+}
